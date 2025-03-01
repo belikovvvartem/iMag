@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вхід до адмін-панелі - IMAG</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <main>
+        <a href="./index.html" class="button-back"><img src="./src/img/login-button-back.png" alt=""></a>
+        <div class="logo">
+            <img src="./src/img/login-apple.png" alt="">
+            <h2 class="title">iMag</h2>
+        </div>
+        <form id="login-form">
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" required>
+            <button type="submit">Увійти</button>
+        </form>
+        <p id="login-error"></p>
+    </main>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

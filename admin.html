@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Адмін-панель - IMAG</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <header>
+        <h1>IMAG - Адмін-панель</h1>
+        <nav>
+            <a href="index.html">Головна</a>
+            <a href="products.html">Товари</a>
+            <a href="cart.html">Кошик</a>
+            <a href="admin.html">Адмін-панель</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Керування товарами</h2>
+        <form id="add-product-form">
+            <label for="name">Назва:</label>
+            <input type="text" id="name" required>
+            <label for="description">Опис:</label>
+            <textarea id="description" required></textarea>
+            <label for="price">Ціна:</label>
+            <input type="number" id="price" required>
+            <label for="currency">Валюта:</label>
+            <select id="currency" required>
+                <option value="UAH">UAH</option>
+                <option value="$">$</option>
+            </select>
+            <label for="photo">Фото:</label>
+            <input type="file" id="photo" accept="image/*" required>
+            <label for="type">Тип:</label>
+            <select id="type" required>
+                <option value="new">Нова техніка</option>
+                <option value="used">Вживана техніка</option>
+            </select>
+            <label for="category">Категорія:</label>
+            <select id="category" required>
+                <option value="iphone">iPhone</option>
+                <option value="mac">Mac</option>
+                <option value="ipad">iPad</option>
+                <option value="watch">Apple Watch</option>
+                <option value="accessories">Аксесуари</option>
+            </select>
+            <button type="submit" id="add-product-btn">Додати товар</button>
+        </form>
+        <h2>Список товарів</h2>
+        <div id="admin-products-list"></div>
+        <div id="edit-modal" style="display:none; position:fixed; top:20%; left:20%; background:white; padding:20px; border:1px solid #ccc;">
+            <form id="edit-product-form">
+                <label for="edit-name">Назва:</label>
+                <input type="text" id="edit-name" required>
+                <label for="edit-description">Опис:</label>
+                <textarea id="edit-description" required></textarea>
+                <label for="edit-price">Ціна:</label>
+                <input type="number" id="edit-price" required>
+                <label for="edit-currency">Валюта:</label>
+                <select id="edit-currency" required>
+                    <option value="UAH">UAH</option>
+                    <option value="$">$</option>
+                </select>
+                <label for="edit-photo">Фото:</label>
+                <input type="file" id="edit-photo" accept="image/*">
+                <label for="edit-type">Тип:</label>
+                <select id="edit-type">
+                    <option value="new">Нова техніка</option>
+                    <option value="used">Вживана техніка</option>
+                </select>
+                <label for="edit-category">Категорія:</label>
+                <select id="edit-category">
+                    <option value="iphone">iPhone</option>
+                    <option value="mac">Mac</option>
+                    <option value="ipad">iPad</option>
+                    <option value="watch">Apple Watch</option>
+                    <option value="accessories">Аксесуари</option>
+                </select>
+                <button type="submit">Зберегти зміни</button>
+                <button type="button" onclick="document.getElementById('edit-modal').style.display='none'">Закрити</button>
+            </form>
+        </div>
+    </main>
+    <script type="module" src="js/admin.js"></script>
+</body>
+</html>

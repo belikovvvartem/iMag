@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Товари - IMAG</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>IMAG</h1>
+        <nav>
+            <a href="index.html">Головна</a>
+            <a href="products.html">Товари</a>
+            <a href="cart.html">Кошик</a>
+            <a href="admin.html">Адмін-панель</a>
+        </nav>
+    </header>
+    <div id="notification" style="display:none; position:fixed; top:10px; right:10px; background-color:#4CAF50; color:white; padding:10px; border-radius:5px; z-index:1000;">
+        Додано в кошик
+    </div>
+    <main>
+        <h2>Товари</h2>
+        <div id="filters">
+            <label for="type-filter">Тип:</label>
+            <select id="type-filter">
+                <option value="">Всі</option>
+                <option value="new">Нова техніка</option>
+                <option value="used">Вживана техніка</option>
+            </select>
+            <label for="category-filter">Категорія:</label>
+            <select id="category-filter">
+                <option value="">Всі</option>
+                <option value="iphone">iPhone</option>
+                <option value="mac">Mac</option>
+                <option value="ipad">iPad</option>
+                <option value="watch">Apple Watch</option>
+                <option value="accessories">Аксесуари</option>
+            </select>
+            <button id="apply-filters">Застосувати</button>
+        </div>
+        <div id="products-list"></div>
+    </main>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

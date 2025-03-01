@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оформлення замовлення - IMAG</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>IMAG</h1>
+        <nav>
+            <a href="index.html">Головна</a>
+            <a href="products.html">Товари</a>
+            <a href="cart.html">Кошик</a>
+            <a href="admin.html">Адмін-панель</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Оформлення замовлення</h2>
+        <form id="checkout-form">
+            <label for="fullName">Ім’я та прізвище:</label>
+            <input type="text" id="fullName" required>
+            <label for="phone">Номер телефону:</label>
+            <input type="tel" id="phone" required>
+            <label for="wishes">Побажання (необов’язково):</label>
+            <textarea id="wishes"></textarea>
+            <button type="submit">Підтвердити замовлення</button>
+        </form>
+        <div id="order-summary"></div>
+    </main>
+    <footer>
+        <p>© 2025 IMAG. Усі права захищено.</p>
+    </footer>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

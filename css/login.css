@@ -1,0 +1,84 @@
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;800;900&display=swap);
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 80%;
+}
+
+.logo{
+    text-align: center;
+    width: 100px;
+    height: 150px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+}
+
+form label {
+    font-size: 18px;
+    font-weight: 500;
+    font-weight: 600;
+    margin-top: 10px;
+
+}
+
+form input{
+    height: 30px;
+    background: #0000003d;
+    color: black;
+    border-radius: 15px;
+    border: 3px solid black;
+    font-weight: 600;
+    padding: 5px 10px;
+    resize: none;
+}
+
+form button {
+    width: 100%;
+    margin-top: 20px;
+    height: 35px;
+    background: #0000003d;
+    border-radius: 15px;
+    border: 3px solid black;
+    color: var(--main-color);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--font-color);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #0000008f;
+}
+
+#login-error {
+    position: fixed;
+    top: 50px;
+    right: 10px;
+    color: red;
+}
+
+.button-back {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+}
