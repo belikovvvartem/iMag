@@ -16,8 +16,10 @@ function createProductElement(product) {
         <h3>${product.name}</h3>
         <p>${product.description}</p>
         ${priceHTML}
-        <button class="add-to-cart" onclick="addToCart('${product.id}')">Додати в кошик</button>
-        <button onclick="orderProductDirectly('${product.id}')">Замовити</button>
+        <div class="productButton">
+        <button class="orderButton" onclick="orderProductDirectly('${product.id}')">Замовити</button>
+        <button class="add-to-cart" onclick="addToCart('${product.id}')"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAAXNSR0IArs4c6QAAAapJREFUSEu1lD9IVlEYxn8PiDbZaEJlm+QmQX+G2itwc1GEwskWE0SiyMGGiE+hBqXNRUFsFhxcghAscSvaRANBRShwUIyezpF74fLZ/W7XT1+4cLjnPb/35Tnvc8Q5hc6JyzHY9gXgdlJkR9K3egum4GvAegY2LGmiHngKvgTMJaDY+RHQKmn/tPATGtueBh4BTyW9O0twJ7AGbAKxSJk4BKYk/frnVNheBu6UIWZyK5JG8sC9wEzJrh8DV4H7khbzwA3ANtAMXJYU17lh+yKwm3xXJP3JNYjtMeAl8CokjhaAB4G3wBtJz2JuLXALsBWm4yfQIul3Htz2d6AduC4prvPBiSPngW6gT1LU/ETYvgGsBm1XgrapewvB94CPwGdJt3LAk8CTcCcDkt6nOYWPkO2vQEfB6B0kTo2yHcf/gLuAD0BjDfhrSc+z+4XgROt4kbtxjKrh4Qlok7RR/b8QbLsHmAV+AJ2S9lKI7YWg/4M4asHGQ6U6tl0BhpNDdyV9yoCjtk3AF0k3y4KjDOPR3pJeZA/b7g/Qh8nDs1QKXDANuduFGp8W/BffmpAX4jz4fgAAAABJRU5ErkJggg=="/></button>
+        </div>
     `;
     return productElement;
 }
@@ -110,7 +112,7 @@ async function displayCart() {
             <h3>${product.name}</h3>
             <p>${product.description}</p>
             <p>${product.price} ${product.currency}</p>
-            <button onclick="removeFromCart('${productId}')">Видалити з кошику</button>
+            <button class="removeFromCart" onclick="removeFromCart('${productId}')">Видалити з кошику</button>
         `;
         cartItemsDiv.appendChild(productElement);
         totalPrice += product.price;
@@ -150,7 +152,7 @@ async function handleCheckout() {
     orderSummary.innerHTML = `
         <h3>Ваше замовлення</h3>
         ${items.map(item => `<p>${item.name} - ${item.price} ${item.currency}</p>`).join('')}
-        <p>Загальна сума: ${totalPrice} ${currency || 'UAH'}</p>
+        <h3>Загальна сума: ${totalPrice} ${currency || 'UAH'}</р3>
     `;
 
     checkoutForm.addEventListener('submit', async (e) => {

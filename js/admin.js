@@ -1,15 +1,15 @@
-import { db, auth, storage } from './config.js';
+import { db, auth } from './config.js';
 import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
-import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js";
 
 // Перевірка автентифікації для адмін-панелі
 function checkAdminAccess() {
     onAuthStateChanged(auth, (user) => {
-        if (!user) {
+        if (!user) { // Якщо користувач не автентифікований
             sessionStorage.removeItem('adminLoggedIn');
             window.location.href = 'login.html';
         } else {
+            // Якщо користувач автентифікований, відображаємо потрібну сторінку
             if (window.location.pathname.endsWith('admin.html')) {
                 displayAdminProducts();
             } else if (window.location.pathname.endsWith('admin-orders.html')) {
@@ -19,6 +19,7 @@ function checkAdminAccess() {
             } else if (window.location.pathname.endsWith('deleted-orders.html')) {
                 displayDeletedOrders();
             }
+            // Додаємо кнопку "Вийти" до навігації
             const nav = document.querySelector('nav');
             if (!nav.querySelector('#logout-btn')) {
                 const logoutBtn = document.createElement('button');
@@ -34,33 +35,24 @@ function checkAdminAccess() {
 // Додавання товару
 document.getElementById('add-product-form')?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const photoFile = document.getElementById('photo').files[0];
-    const storageRef = ref(storage, `products/${photoFile.name}`);
-
+    const product = {
+        name: document.getElementById('name').value,
+        description: document.getElementById('description').value,
+        price: Number(document.getElementById('price').value),
+        currency: document.getElementById('currency').value,
+        photo: document.getElementById('photo').value, // Повертаємо URL
+        type: document.getElementById('type').value,
+        category: document.getElementById('category').value,
+        onSale: false,
+        addedDate: new Date().toISOString()
+    };
     try {
-        // Завантажуємо файл у Firebase Storage
-        await uploadBytes(storageRef, photoFile);
-        const photoURL = await getDownloadURL(storageRef);
-
-        const product = {
-            name: document.getElementById('name').value,
-            description: document.getElementById('description').value,
-            price: Number(document.getElementById('price').value),
-            currency: document.getElementById('currency').value,
-            photo: photoURL, // Зберігаємо URL завантаженого файлу
-            type: document.getElementById('type').value,
-            category: document.getElementById('category').value,
-            onSale: false,
-            addedDate: new Date().toISOString()
-        };
-
         await addDoc(collection(db, "products"), product);
         alert('Товар додано!');
         document.getElementById('add-product-form').reset();
         displayAdminProducts();
     } catch (error) {
         console.error('Помилка:', error);
-        alert('Помилка при додаванні товару!');
     }
 });
 
@@ -229,7 +221,7 @@ async function displayDeletedOrders() {
 function calculateRemainingTime(timestamp) {
     if (!timestamp) return 0;
     const now = new Date();
-    const endTime = new Date(timestamp).getTime() + 24 * 60 * 60 * 1000;
+    const endTime = new Date(timestamp).getTime() + 24 * 60 * 60 * 1000; // 24 години
     return Math.max(0, endTime - now.getTime());
 }
 
@@ -246,7 +238,7 @@ function isNewProduct(product) {
     const now = new Date();
     const addedDate = new Date(product.addedDate);
     const diff = now - addedDate;
-    return diff < 24 * 60 * 60 * 1000;
+    return diff < 24 * 60 * 60 * 1000; // 24 години
 }
 
 // Видалення товару
@@ -264,28 +256,19 @@ window.openEditModal = async function(productId) {
     document.getElementById('edit-description').value = product.description;
     document.getElementById('edit-price').value = product.price;
     document.getElementById('edit-currency').value = product.currency;
-    document.getElementById('edit-photo').value = ''; // Очищаємо поле файлу
+    document.getElementById('edit-photo').value = product.photo; // Повертаємо URL для редагування
     document.getElementById('edit-type').value = product.type;
     document.getElementById('edit-category').value = product.category;
     document.getElementById('edit-modal').style.display = 'block';
 
     document.getElementById('edit-product-form').onsubmit = async function(e) {
         e.preventDefault();
-        const photoFile = document.getElementById('edit-photo').files[0];
-        let photoURL = product.photo; // Зберігаємо старе фото, якщо нове не вибрано
-
-        if (photoFile) {
-            const storageRef = ref(storage, `products/${photoFile.name}`);
-            await uploadBytes(storageRef, photoFile);
-            photoURL = await getDownloadURL(storageRef);
-        }
-
         await updateDoc(doc(db, "products", productId), {
             name: document.getElementById('edit-name').value,
             description: document.getElementById('edit-description').value,
             price: Number(document.getElementById('edit-price').value),
             currency: document.getElementById('edit-currency').value,
-            photo: photoURL,
+            photo: document.getElementById('edit-photo').value, // Оновлюємо через URL
             type: document.getElementById('edit-type').value,
             category: document.getElementById('edit-category').value
         });

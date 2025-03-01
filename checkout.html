@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Оформлення замовлення - IMAG</title>
+    <title>IMAG • Замовлення</title>
+    <link rel="stylesheet" href="css/checkout.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="shortcut icon" href="favicon.jpg" type="image/x-icon">
 </head>
 <body>
     <header>
-        <h1>IMAG</h1>
+        <h1><a href="./index.html">IMAG • Оформлення замовлення</a></h1>
         <nav>
-            <a href="index.html">Головна</a>
-            <a href="products.html">Товари</a>
-            <a href="cart.html">Кошик</a>
-            <a href="admin.html">Адмін-панель</a>
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="products.html">Товари</a></li>
+                <li><a href="./cart.html">Кошик</a></li>    
+            </ul>
         </nav>
     </header>
     <main>
-        <h2>Оформлення замовлення</h2>
         <form id="checkout-form">
             <label for="fullName">Ім’я та прізвище:</label>
             <input type="text" id="fullName" required>
@@ -29,9 +31,6 @@
         </form>
         <div id="order-summary"></div>
     </main>
-    <footer>
-        <p>© 2025 IMAG. Усі права захищено.</p>
-    </footer>
     <script type="module" src="js/main.js"></script>
 </body>
 </html>

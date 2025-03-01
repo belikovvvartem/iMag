@@ -3,24 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кошик - IMAG</title>
+    <title>IMAG • Кошик</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="shortcut icon" href="favicon.jpg" type="image/x-icon">
 </head>
 <body>
     <header>
-        <h1>IMAG</h1>
+        <h1><a href="./index.html">IMAG • Кошик</a></h1>
         <nav>
-            <a href="index.html">Головна</a>
-            <a href="products.html">Товари</a>
-            <a href="cart.html">Кошик</a>
-            <a href="admin.html">Адмін-панель</a>
+            <ul>
+                <li><a href="category.html?category=iphone">iPhone</a></li>
+                <li><a href="category.html?category=mac">Mac</a></li>
+                <li><a href="category.html?category=ipad">iPad</a></li>
+                <li><a href="category.html?category=watch">Apple Watch</a></li>
+                <li><a href="category.html?category=accessories">Аксесуари</a></li>   
+            </ul>
+        </nav>
+        <nav>
+            <ul>
+                <li><a href="./index.html">Головна</a></li>
+                <li><a href="./products.html">Товари</a></li>    
+            </ul>
         </nav>
     </header>
     <main>
-        <h2>Кошик</h2>
-        <div id="cart-items"></div>
+        <div class="price">
         <p>Загальна сума: <span id="total-price">0</span></p>
         <button id="checkout">Оформити замовлення</button>
+        </div>
+
+        <div id="cart-items"></div>
     </main>
     <script type="module" src="js/main.js"></script>
 </body>

@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Адмін-панель - IMAG</title>
+    <title>IMAG • Адмін Панель</title>
     <link rel="stylesheet" href="css/admin.css">
+    <link rel="shortcut icon" href="favicon.jpg" type="image/x-icon">
 </head>
 <body>
     <header>
         <h1>IMAG - Адмін-панель</h1>
         <nav>
-            <a href="index.html">Головна</a>
-            <a href="products.html">Товари</a>
-            <a href="cart.html">Кошик</a>
-            <a href="admin.html">Адмін-панель</a>
+            <ul>
+                <li><a href="./index.html">Головна</a></li>
+                <li><a href="./admin-orders.html">Замовлення</a></li>
+                <li><a href="./completed-orders.html">Виконані</a></li>
+                <li><a href="./deleted-orders.html">Видалені</a></li>
+            </ul>
         </nav>
     </header>
     <main>
-        <h2>Керування товарами</h2>
         <form id="add-product-form">
             <label for="name">Назва:</label>
             <input type="text" id="name" required>
@@ -30,8 +32,8 @@
                 <option value="UAH">UAH</option>
                 <option value="$">$</option>
             </select>
-            <label for="photo">Фото:</label>
-            <input type="file" id="photo" accept="image/*" required>
+            <label for="photo">Фото (URL):</label>
+            <input type="url" id="photo" required>
             <label for="type">Тип:</label>
             <select id="type" required>
                 <option value="new">Нова техніка</option>
@@ -42,6 +44,7 @@
                 <option value="iphone">iPhone</option>
                 <option value="mac">Mac</option>
                 <option value="ipad">iPad</option>
+                <option value="airpods">AirPods</option>
                 <option value="watch">Apple Watch</option>
                 <option value="accessories">Аксесуари</option>
             </select>
@@ -49,7 +52,7 @@
         </form>
         <h2>Список товарів</h2>
         <div id="admin-products-list"></div>
-        <div id="edit-modal" style="display:none; position:fixed; top:20%; left:20%; background:white; padding:20px; border:1px solid #ccc;">
+        <div id="edit-modal" style="display:none; position:fixed; top:10%; left:20%; background: none; padding:20px; border: none;">
             <form id="edit-product-form">
                 <label for="edit-name">Назва:</label>
                 <input type="text" id="edit-name" required>
@@ -62,8 +65,8 @@
                     <option value="UAH">UAH</option>
                     <option value="$">$</option>
                 </select>
-                <label for="edit-photo">Фото:</label>
-                <input type="file" id="edit-photo" accept="image/*">
+                <label for="edit-photo">Фото (URL):</label>
+                <input type="url" id="edit-photo">
                 <label for="edit-type">Тип:</label>
                 <select id="edit-type">
                     <option value="new">Нова техніка</option>

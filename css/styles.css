@@ -1,41 +1,102 @@
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;800;900&display=swap);
+
+
+:root {
+    --main-color: #030303;
+    --font-color: #FAFBFA;
+    --title-font: 'Poppins', sans-serif;
+    --border-rarius-button: 5px;
+    --color-red: #ff0000;
+    --color-green: #28a745;
+    --color-yellow: #ffc107;
+    --color-purple: #6f42c1;
+    --color-turquoise: #17a2b8;
+    --color-blue: #007bff;
+    --color-p: #777070;
+    --p-size: 14px;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+
 }
 
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding: 10px 20px;
+    background: var(--main-color);
+    color: var(--font-color);
+}
+
+h1 a {
+    text-decoration: none;
+    color: var(--font-color);
+}
+
+main {
+    padding: 10px 20px;
+}
+
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-nav a {
-    color: #fff;
-    margin-right: 1rem;
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    margin-right: 30px;
+}
+
+nav ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    transition: text-shadow 0.5s ease;
+    ;
+}
+
+nav ul li:hover {
+    text-shadow: 0 15px 3px var(--font-color);
+}
+
+nav ul li a {
+    color: var(--font-color);
     text-decoration: none;
+    font-family: var(--title-font);
+    font-weight: 700;
+    font-size: 18px;
 }
 
-main {
-    padding: 1rem;
+#notification {
+    background: var(--font-color);
+    color: var(--main-color);
+    border-radius: 15px 0 0 15px;
+    border: 2px solid var(--main-color);
 }
 
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
 
-#products-list, #used-products-list, #admin-products-list, #cart-items, #category-products, #orders-list, #completed-orders-list, #deleted-orders-list {
+
+#products-list,
+#used-products-list,
+#admin-products-list,
+#cart-items,
+#category-products,
+#orders-list,
+#completed-orders-list,
+#deleted-orders-list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
+    gap: 5px;
 }
 
 .product,
@@ -45,7 +106,7 @@ footer {
     align-items: center;
     padding: 20px;
     box-sizing: border-box;
-    width: 300px;
+    width: 250px;
     position: relative;
     border: 5px solid#E9E9E9;
 }
@@ -55,9 +116,10 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 250px;
+    width: 200px;
     height: 307px;
     overflow: hidden;
+    margin-top: -25px;
 }
 
 .image-wrapper img {
@@ -67,32 +129,48 @@ footer {
     height: auto;
 }
 
-button {
+.product h3 {
+    width: 100%;
+    border-bottom: 2px solid#E9E9E9;
+}
+
+p {
+    width: 100%;
+    border-bottom: 2px solid#E9E9E9;
+}
+
+.productButton {
+    display: flex;
+}
+
+.orderButton {
+    width: 150px;
+    border-radius: 15px;
+    background: none;
+    color: var(--main-color);
+    border: 5px solid var(--main-color);
+    font-weight: 800;
+    font-size: 15px;
     padding: 0.5rem;
     margin: 0.2rem;
-    background-color: #333;
-    color: #fff;
-    border: none;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #555;
+.add-to-cart {
+    border-radius: 15px;
+    background: var(--main-color);
+    color: var(--main-color);
+    border: 5px solid var(--main-color);
+    font-weight: 800;
+    font-size: 15px;
+    padding: 0.5rem;
+    margin: 0.2rem;
+    cursor: pointer;
 }
 
-button.add-to-cart {
-    transition: transform 0.2s;
+.orderButton:hover {
+    background-color: #0000002c;
 }
-
-button.add-to-cart:active {
-    transform: scale(0.95);
-}
-
-
-
-
-
-
 
 ::-webkit-scrollbar {
     width: 8px;
@@ -104,4 +182,116 @@ button.add-to-cart:active {
 
 ::-webkit-scrollbar-thumb {
     background-color: black;
+}
+
+#filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    gap: 20px;
+    padding: 0 10px;
+
+
+}
+
+#filters label {
+    font-weight: 700;
+}
+
+#filters select {
+    width: 100px;
+    height: 35px;
+    border-radius: 15px;
+    background: none;
+    color: var(--font-color);
+    border: 2px solid var(--font-color);
+    font-weight: 500;
+    font-size: 13px;
+    padding: 0.5rem;
+    margin: 0.2rem;
+    cursor: pointer;
+}
+
+#filters button {
+    width: 100px;
+    height: 35px;
+    border-radius: 15px;
+    background: none;
+    color: var(--font-color);
+    border: 2px solid var(--font-color);
+    font-weight: 500;
+    font-size: 13px;
+    padding: 0.5rem;
+    margin: 0.2rem;
+    cursor: pointer;
+}
+
+.type,
+.kategory {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.hero {
+    overflow: hidden;
+}
+
+.swiper-container {
+    --swiper-navigation-color: #ffffff;
+    --swiper-theme-color: #ffffff;
+    height: 85vh;
+    min-height: 480px;
+    max-height: 960px;
+    position: relative;
+}
+
+.swiper-slide {
+    background-color: #0f0f0f;
+}
+/*
+.swiper-slide::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 70%;
+    background-color: #3d405b;
+    z-index: 1;
+    background: linear-gradient(to top, #1d3553 0%, rgba(29, 53, 83, 0.987) 8.1%, rgba(29, 53, 83, 0.951) 15.5%, rgba(29, 53, 83, 0.896) 22.5%, rgba(29, 53, 83, 0.825) 29%, rgba(29, 53, 83, 0.741) 35.3%, rgba(29, 53, 83, 0.648) 41.2%, rgba(29, 53, 83, 0.55) 47.1%, rgba(29, 53, 83, 0.45) 52.9%, rgba(29, 53, 83, 0.352) 58.8%, rgba(29, 53, 83, 0.259) 64.7%, rgba(29, 53, 83, 0.175) 71%, rgba(29, 53, 83, 0.104) 77.5%, rgba(29, 53, 83, 0.049) 84.5%, rgba(29, 53, 83, 0.013) 91.9%, rgba(29, 53, 83, 0) 100%);
+}
+*/
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.75;
+}
+
+.swiper-slide__title {
+    font-family: "Montserrat", sans-serif;
+    color: #ffffff;
+    position: absolute;
+    left: 10%;
+    top: 66.66%;
+    transform: translate(0, -50%);
+    z-index: 2;
+    letter-spacing: -2px;
+    opacity: 0.5;
+    transition: 0.3s;
+}
+
+.swiper-slide h1 {
+    font-size: 5rem;
+}
+
+.swiper-slide h2 {
+    font-size: 4rem;
+}
+
+.swiper-slide.swiper-slide-active .swiper-slide__title {
+    opacity: 1;
 }

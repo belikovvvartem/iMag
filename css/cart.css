@@ -1,0 +1,39 @@
+main {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.price {
+    width: 30%;
+    border-right: 5px solid#E9E9E9;
+}
+
+#checkout {
+    width: 250px;
+    border-radius: 15px;
+    background: none;
+    color: var(--main-color);
+    border: 5px solid var(--main-color);
+    font-weight: 800;
+    font-size: 15px;
+    padding: 0.5rem;
+    margin: 0.2rem;
+    cursor: pointer;
+}
+
+.removeFromCart {
+    width: 80%;
+    font-weight: 700;
+    border-radius: var(--border-rarius-button);
+    color: var(--font-color);
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin: 0.2rem;
+    background: #ff0000;
+}
+
+.removeFromCart:hover {
+    background-color: #cc0000;
+}
