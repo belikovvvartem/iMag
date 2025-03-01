@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Категорія - IMAG</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1><a href="./index.html">IMAG</a></h1>
+
+        <nav>
+            <ul>
+                <li><a href="category.html?category=iphone">iPhone</a></li>
+                <li><a href="category.html?category=mac">Mac</a></li>
+                <li><a href="category.html?category=ipad">iPad</a></li>
+                <li><a href="category.html?category=airpods">AirPods</a></li>
+                <li><a href="category.html?category=watch">Apple Watch</a></li>
+                <li><a href="category.html?category=accessories">Akcu</a></li>   
+            </ul>
+        </nav>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="products.html">Товари</a></li>    
+            </ul>
+        </nav>
+    </header>
+    <div id="notification" style="display:none; position:fixed; top:10px; right:10px; background-color:#4CAF50; color:white; padding:10px; border-radius:5px; z-index:1000;">
+        Додано в кошик
+    </div>
+    <main>
+        <h2 id="category-title"></h2>
+        <div id="category-products"></div>
+    </main>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
