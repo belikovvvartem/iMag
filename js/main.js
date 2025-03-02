@@ -21,6 +21,15 @@ function createProductElement(product) {
         <button class="add-to-cart" onclick="addToCart('${product.id}')"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAAXNSR0IArs4c6QAAAapJREFUSEu1lD9IVlEYxn8PiDbZaEJlm+QmQX+G2itwc1GEwskWE0SiyMGGiE+hBqXNRUFsFhxcghAscSvaRANBRShwUIyezpF74fLZ/W7XT1+4cLjnPb/35Tnvc8Q5hc6JyzHY9gXgdlJkR9K3egum4GvAegY2LGmiHngKvgTMJaDY+RHQKmn/tPATGtueBh4BTyW9O0twJ7AGbAKxSJk4BKYk/frnVNheBu6UIWZyK5JG8sC9wEzJrh8DV4H7khbzwA3ANtAMXJYU17lh+yKwm3xXJP3JNYjtMeAl8CokjhaAB4G3wBtJz2JuLXALsBWm4yfQIul3Htz2d6AduC4prvPBiSPngW6gT1LU/ETYvgGsBm1XgrapewvB94CPwGdJt3LAk8CTcCcDkt6nOYWPkO2vQEfB6B0kTo2yHcf/gLuAD0BjDfhrSc+z+4XgROt4kbtxjKrh4Qlok7RR/b8QbLsHmAV+AJ2S9lKI7YWg/4M4asHGQ6U6tl0BhpNDdyV9yoCjtk3AF0k3y4KjDOPR3pJeZA/b7g/Qh8nDs1QKXDANuduFGp8W/BffmpAX4jz4fgAAAABJRU5ErkJggg=="/></button>
         </div>
     `;
+
+    // Додаємо позначку "б/у", якщо товар вживаний
+    if (product.type === "used") {
+        const usedLabel = document.createElement('span');
+        usedLabel.className = 'used';
+        usedLabel.textContent = 'б/у';
+        productElement.appendChild(usedLabel);
+    }
+
     return productElement;
 }
 
@@ -93,8 +102,7 @@ async function displayCart() {
     const totalPriceElement = document.getElementById('total-price');
     const cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
     cartItemsDiv.innerHTML = '';
-    let totalPrice = 0;
-    let currency = '';
+    const currencyTotals = {}; // Для зберігання сум по валютах
 
     for (const productId of cartItems) {
         const productDoc = await getDoc(doc(db, "products", productId));
@@ -115,12 +123,22 @@ async function displayCart() {
             <button class="removeFromCart" onclick="removeFromCart('${productId}')">Видалити з кошику</button>
         `;
         cartItemsDiv.appendChild(productElement);
-        totalPrice += product.price;
-        currency = product.currency;
+
+        // Підраховуємо суму для кожної валюти
+        if (currencyTotals[product.currency]) {
+            currencyTotals[product.currency] += product.price;
+        } else {
+            currencyTotals[product.currency] = product.price;
+        }
     }
 
-    totalPriceElement.textContent = `${totalPrice} ${currency || 'UAH'}`;
-    document.getElementById('checkout').addEventListener('click', () => {
+    // Формуємо рядок із сумами для кожної валюти
+    const totalText = Object.entries(currencyTotals)
+        .map(([currency, total]) => `${total} ${currency}`)
+        .join(' + ');
+    totalPriceElement.textContent = totalText || '0 UAH';
+
+    document.getElementById('checkout')?.addEventListener('click', () => {
         window.location.href = 'checkout.html';
     });
 }
@@ -131,8 +149,7 @@ async function handleCheckout() {
     const orderSummary = document.getElementById('order-summary');
     const cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
     let items = [];
-    let totalPrice = 0;
-    let currency = '';
+    const currencyTotals = {}; // Для зберігання сум по валютах
 
     for (const productId of cartItems) {
         const productDoc = await getDoc(doc(db, "products", productId));
@@ -144,20 +161,29 @@ async function handleCheckout() {
                 price: product.price,
                 currency: product.currency
             });
-            totalPrice += product.price;
-            currency = product.currency;
+            // Підраховуємо суму для кожної валюти
+            if (currencyTotals[product.currency]) {
+                currencyTotals[product.currency] += product.price;
+            } else {
+                currencyTotals[product.currency] = product.price;
+            }
         }
     }
+
+    // Формуємо рядок із сумами для кожної валюти
+    const totalText = Object.entries(currencyTotals)
+        .map(([currency, total]) => `${total} ${currency}`)
+        .join(' + ');
 
     orderSummary.innerHTML = `
         <h3>Ваше замовлення</h3>
         ${items.map(item => `<p>${item.name} - ${item.price} ${item.currency}</p>`).join('')}
-        <h3>Загальна сума: ${totalPrice} ${currency || 'UAH'}</р3>
+        <h3>Загальна сума: ${totalText || '0 UAH'}</h3>
     `;
 
     checkoutForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        if (totalPrice === 0) {
+        if (!Object.keys(currencyTotals).length) {
             alert('Помилка: виберіть хоча б один товар для замовлення!');
             return;
         }
@@ -169,8 +195,7 @@ async function handleCheckout() {
                 wishes: document.getElementById('wishes').value || ''
             },
             items: items,
-            total: totalPrice,
-            currency: currency,
+            total: totalText, // Зберігаємо як рядок із сумами по валютах
             status: 'active',
             timestamp: new Date().toISOString()
         };
@@ -228,7 +253,7 @@ window.logout = async function() {
 if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
     // Нічого не відображаємо
 } else if (window.location.pathname.endsWith('products.html')) {
-    document.getElementById('apply-filters').addEventListener('click', displayProducts);
+    document.getElementById('apply-filters')?.addEventListener('click', displayProducts);
     displayProducts();
 } else if (window.location.pathname.endsWith('category.html')) {
     displayCategoryProducts();

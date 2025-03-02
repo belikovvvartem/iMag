@@ -84,6 +84,15 @@ async function displayAdminProducts() {
             <button class="edit-product-btn" onclick="openEditModal('${product.id}')">Змінити</button>
             ${discountButton}
         `;
+
+        // Додаємо позначку "б/у", якщо товар вживаний
+        if (product.type === "used") {
+            const usedLabel = document.createElement('span');
+            usedLabel.className = 'used';
+            usedLabel.textContent = 'б/у';
+            productElement.appendChild(usedLabel);
+        }
+
         if (isNewProduct(product)) {
             const newLabel = document.createElement('span');
             newLabel.style = 'background:red; color:white; padding:2px; position:absolute; top: 0; right: 0; padding: 0 10px; border-radius: 0 0 0 15px;';
@@ -114,7 +123,7 @@ async function displayOrders() {
             <p>Телефон: ${order.customer.phone}</p>
             <p>Побажання: ${order.customer.wishes || 'Немає'}</p>
             <p>Товари: ${order.items.map(item => `${item.name} - ${item.price} ${item.currency}`).join(', ')}</p>
-            <p>Загальна сума: ${order.total} ${order.currency}</p>
+            <p>Загальна сума: ${order.total}</p> <!-- Змінено для відображення суми як рядка -->
             <button class="completeOrder" onclick="completeOrder('${order.id}')">Виконано</button>
             <button class="deleteOrder" onclick="deleteOrder('${order.id}')">Видалити</button>
         `;
@@ -143,7 +152,7 @@ async function displayCompletedOrders() {
                 <p>Клієнт: ${order.customer.fullName}</p>
                 <p>Телефон: ${order.customer.phone}</p>
                 <p>Товари: ${order.items.map(item => `${item.name} - ${item.price} ${item.currency}`).join(', ')}</p>
-                <p>Загальна сума: ${order.total} ${order.currency}</p>
+                <p>Загальна сума: ${order.total}</p> <!-- Змінено для відображення суми як рядка -->
             `;
             completedOrdersList.appendChild(orderElement);
         });
@@ -193,7 +202,7 @@ async function displayDeletedOrders() {
             <p>Клієнт: ${order.customer.fullName}</p>
             <p>Телефон: ${order.customer.phone}</p>
             <p>Товари: ${order.items.map(item => `${item.name} - ${item.price} ${item.currency}`).join(', ')}</p>
-            <p>Загальна сума: ${order.total} ${order.currency}</p>
+            <p>Загальна сума: ${order.total}</p> <!-- Змінено для відображення суми як рядка -->
             <button class="restoreOrder" onclick="restoreOrder('${order.id}')">Відновити</button>
         `;
         deletedOrdersList.appendChild(orderElement);

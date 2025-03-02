@@ -3,36 +3,39 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>IMAG • Магазин техніки Apple</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="shortcut icon" href="favicon.jpg" type="image/x-icon">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    
 </head>
 
 <body>
-    <header>
-        <h1><a href="./index.html">IMAG</a></h1>
+    <main>
+        <header>
+            <h1><a href="./index.html">IMAG</a></h1>
 
-        <nav>
-            <ul>
-                <li><a href="category.html?category=iphone">iPhone</a></li>
-                <li><a href="category.html?category=mac">Mac</a></li>
-                <li><a href="category.html?category=ipad">iPad</a></li>
-                <li><a href="category.html?category=watch">Apple Watch</a></li>
-                <li><a href="category.html?category=accessories">Аксесуари</a></li>
-            </ul>
-        </nav>
+            <nav>
+                <ul>
+                    <li><a href="category.html?category=iphone">iPhone</a></li>
+                    <li><a href="category.html?category=mac">Mac</a></li>
+                    <li><a href="category.html?category=ipad">iPad</a></li>
+                    <li><a href="category.html?category=airpods">AirPods</a></li>
+                    <li><a href="category.html?category=watch">Apple Watch</a></li>
+                    <li><a href="category.html?category=accessories">Akcu</a></li>
+                    <li><a href="category.html?category=dyson">Dyson</a></li>
+                </ul>
+            </nav>
 
-        <nav>
-            <ul>
-                <li><a href="index.html">Головна</a></li>
-                <li><a href="products.html">Товари</a></li>
-            </ul>
-        </nav>
-    </header>
+            <nav>
+                <ul>
+                    <li><a href="products.html">Товари</a></li>
+                </ul>
+            </nav>
+        </header>
 
-    <section class="hero">
+        <section class="hero">
             <!-- Slider main container -->
             <div class="swiper-container">
                 <!-- Additional required wrapper -->
@@ -40,18 +43,18 @@
                     <!-- Slides -->
                     <div class="swiper-slide">
                         <h1 class="swiper-slide__title">iPhone 16</h1>
-                        <img src="https://www.apple.com/ua/iphone/home/images/meta/iphone__kqge21l9n26q_og.png?202410230416"
-                            alt="Placeholder image with tag Apple">
+                        <a href="category.html?category=iphone"><img src="https://www.apple.com/ua/iphone/home/images/meta/iphone__kqge21l9n26q_og.png?202410230416"
+                            alt="Placeholder image with tag Apple"></a>
                     </div>
                     <div class="swiper-slide">
                         <h2 class="swiper-slide__title">MacBook</h2>
-                        <img src="https://www.apple.com/newsroom/images/product/mac/standard/Apple-MacBook-Pro-M2-Pro-and-M2-Max-hero-230117.jpg.landing-big_2x.jpg"
-                            alt="Placeholder image with tag Google / Android" loading="lazy">
+                        <a href="category.html?category=mac"><img src="https://www.apple.com/newsroom/images/product/mac/standard/Apple-MacBook-Pro-M2-Pro-and-M2-Max-hero-230117.jpg.landing-big_2x.jpg"
+                            alt="Placeholder image with tag Google / Android" loading="lazy"></a>
                     </div>
                     <div class="swiper-slide">
                         <h2 class="swiper-slide__title">Apple Watch</h2>
-                        <img src="https://www.apple.com/v/watch/bo/images/meta/apple-watch__f6h72tjlgx26_og.png"
-                            alt="Placeholder image with tag Microsoft / Xbox" loading="lazy">
+                        <a href="category.html?category=watch"><img src="https://www.apple.com/v/watch/bo/images/meta/apple-watch__f6h72tjlgx26_og.png"
+                            alt="Placeholder image with tag Microsoft / Xbox" loading="lazy"></a>
                     </div>
                 </div>
                 <!-- If we need pagination -->
@@ -61,9 +64,90 @@
                 <div class="swiper-button-prev" aria-label="previous slide"></div>
                 <div class="swiper-button-next" aria-label="next slide"></div>
             </div>
-    </section>
+        </section>
 
-    <main>
+        <section class="product-links">
+            <a href="category.html?category=iphone" class="product-link">
+                <h4 class="title">iPhone</h4>
+                <img src="./src/img/product-link/iPhone.jpg" alt="iPhone">
+            </a>
+            <a href="category.html?category=mac" class="product-link">
+                <h4 class="title">Mac</h4>
+                <img src="./src/img/product-link/Mac.jpg" alt="Mac">
+            </a>
+            <a href="category.html?category=ipad" class="product-link">
+                <h4 class="title">iPad</h4>
+                <img src="./src/img/product-link/iPad.jpg" alt="iPad">
+            </a>
+            <a href="category.html?category=airpods" class="product-link">
+                <h4 class="title">AirPods</h4>
+                <img src="./src/img/product-link/AirPods.jpg" alt="AirPods">
+            </a>
+            <a href="category.html?category=watch" class="product-link">
+                <h4 class="title">Watch</h4>
+                <img src="./src/img/product-link/Watch.jpg" alt="Watch">
+            </a>
+            <a href="category.html?category=accessories" class="product-link">
+                <h4 class="title">Akcu</h4>
+                <img src="./src/img/product-link/Akcu.jpg" alt="Akcu">
+            </a>
+            <a href="category.html?category=dyson" class="product-link">
+                <h4 class="title">Dyson</h4>
+                <img src="./src/img/product-link/Dyson.jpg" alt="Dyson">
+            </a>
+        </section>
+
+        <section class="desc-banner">
+            <div class="banner">
+
+                <div class="banner-text">
+                    <h3>Imag – твоє вікно<br> у світ Apple. <br> Довіряй професіоналам!</h3>
+                </div>
+
+                <div class="banner-img">
+                    <img src="./src/img/imag-shop.jpg" alt="">
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-nav">
+                <h1><a href="./index.html">IMAG</a></h1>
+
+                <nav>
+                    <ul>
+                        <li><a href="category.html?category=iphone">iPhone</a></li>
+                        <li><a href="category.html?category=mac">Mac</a></li>
+                        <li><a href="category.html?category=ipad">iPad</a></li>
+                        <li><a href="category.html?category=airpods">AirPods</a></li>
+                        <li><a href="category.html?category=watch">Apple Watch</a></li>
+                        <li><a href="category.html?category=accessories">Akcu</a></li>
+                        <li><a href="category.html?category=dyson">Dyson</a></li>
+                    </ul>
+                </nav>
+    
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Головна</a></li>
+                        <li><a href="products.html">Товари</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="footer-contact">
+                <a href="tel:+380974343011">+380974343011</a>
+                <div class="contact">
+                    <a href=""><img src="./src/img/icon/instagram.png" alt="instagram"></a>
+                    <a href=""><img src="./src/img/icon/telegram.png" alt="telegram"></a>
+                    <a href=""><img src="./src/img/icon/tiktok.png" alt="tiktok"></a>
+                    <a href=""><img src="./src/img/icon/location.png" alt="location"></a>
+                    <a href=""><img src="./src/img/icon/credit-card.png" alt="credit-card"></a>
+                </div>
+                <a href="mailto:imag@gmail.com">imag@gmail.com</a>
+            </div>
+            <div class="footer-rights">
+                Магази Apple техніки - iMag
+            </div>
+        </footer>
 
     </main>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
